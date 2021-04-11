@@ -24,6 +24,9 @@ class World {
     const torus = createTorus();
 
     this.resizer = new Resizer(container, camera, renderer);
+    this.resizer.onResize = () => {
+      this.render();
+    };
 
     container.append(renderer.domElement);
 
