@@ -6,6 +6,7 @@ import { createLights } from "./components/lights.js";
 
 import { createRenderer } from "./systems/renderer.js";
 import { Resizer } from "./systems/Resizer.js";
+import { Loop } from "./systems/Loop.js";
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
@@ -13,38 +14,38 @@ let camera;
 let renderer;
 let scene;
 let light;
+let loop;
 
 class World {
   constructor(container) {
     camera = createCamera();
     scene = createScene();
     renderer = createRenderer();
+    loop = new Loop(camera, scene, renderer);
 
     const cube = createCube();
+    loop.updatables.push(cube);
+
     const torus = createTorus();
 
     this.resizer = new Resizer(container, camera, renderer);
-    this.resizer.onResize = () => {
-      this.render();
-    };
 
     container.append(renderer.domElement);
 
     light = createLights();
     scene.add(camera, light, cube, torus);
-
-    this.animate();
   }
 
   render() {
     renderer.render(scene, camera);
   }
 
-  animate() {
-    requestAnimationFrame(() => {
-      this.render();
-      this.animate();
-    });
+  start() {
+    loop.start();
+  }
+
+  stop() {
+    loop.stop();
   }
 }
 
