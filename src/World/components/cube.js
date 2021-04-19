@@ -1,10 +1,11 @@
 import {
   BoxBufferGeometry,
   Mesh,
-  MeshBasicMaterial,
   TextureLoader,
   MeshStandardMaterial,
 } from "../../../vendor/three/build/three.module.js";
+
+import { OrbitControls } from "../../../vendor/three/controls/OrbitControls.js";
 
 function createMaterial() {
   // create a texture loader.
