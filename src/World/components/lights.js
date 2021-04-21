@@ -1,21 +1,22 @@
-import {
-  HemisphereLight,
-  DirectionalLight,
-  PointLight,
-  RectAreaLight,
-} from "../../../vendor/three/build/three.module.js";
+import { DirectionalLight, AmbientLight, HemisphereLight } from "../../../vendor/three/build/three.module.js";
 
 let ADD_ROT = 0.01;
 let ADD_POS = 0.3;
 
 function createLights() {
-  // Directional Light
-  const light = new DirectionalLight("white", 3);
-  // move the light right, up, and towards us
-  light.position.set(0, 10, 10);
-  light.target.position.set(0, 0, 0);
+  // adding an ambient light to mimic indirect lighting
+  const ambientLight = new AmbientLight("white", 0.7);
 
-  return light;
+  // Directional Light
+  const mainLight = new DirectionalLight("white", 3);
+  // move the light right, up, and towards us
+  mainLight.position.set(10, 10, 10);
+  mainLight.target.position.set(0, 0, 0);
+
+  const secondaryLight = new DirectionalLight("white", 3);
+  secondaryLight.position.set(-10, -10, -10);
+
+  return [ambientLight, mainLight, secondaryLight];
 }
 
 function animateLight(light) {

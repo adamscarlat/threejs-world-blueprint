@@ -33,12 +33,12 @@ class World {
 
     container.append(renderer.domElement);
 
-    light = createLights();
+    const lights = createLights();
 
     const controls = createControls(camera, renderer.domElement);
     loop.updatables.push(controls);
 
-    scene.add(camera, light, cube, torus);
+    scene.add(camera, cube, torus, ...lights);
   }
 
   render() {
