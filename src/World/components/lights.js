@@ -5,7 +5,7 @@ let ADD_POS = 0.3;
 
 function createLights() {
   // adding an ambient light to mimic indirect lighting
-  const ambientLight = new AmbientLight("white", 0.7);
+  const ambientLight = new AmbientLight("white", 0.5);
 
   // Directional Light
   const mainLight = new DirectionalLight("white", 3);
