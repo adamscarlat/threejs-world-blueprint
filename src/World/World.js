@@ -3,8 +3,9 @@ import { createCube } from "./components/cube.js";
 import { createScene } from "./components/scene.js";
 import { createTorus } from "./components/torus.js";
 import { createLights } from "./components/lights.js";
-
+import { createMeshGroup } from "./components/meshGroup.js";
 import { createRenderer } from "./systems/renderer.js";
+
 import { Resizer } from "./systems/Resizer.js";
 import { Loop } from "./systems/Loop.js";
 import { createControls } from "./systems/controls.js";
@@ -38,7 +39,10 @@ class World {
     const controls = createControls(camera, renderer.domElement);
     loop.updatables.push(controls);
 
-    scene.add(camera, cube, torus, ...lights);
+    const meshGroup = createMeshGroup();
+    loop.updatables.push(meshGroup);
+
+    scene.add(camera, cube, torus, meshGroup, ...lights);
   }
 
   render() {

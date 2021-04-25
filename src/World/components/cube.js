@@ -32,7 +32,7 @@ function createCube() {
   const cube = new Mesh(geometry, material);
 
   // cube initial position
-  cube.position.set(-5, 0, 0);
+  cube.position.set(-15, 0, 0);
   cube.rotation.set(-0.5, -0.1, 0.8);
 
   const degreesPerSeconds = 12;
