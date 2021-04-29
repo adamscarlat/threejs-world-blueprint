@@ -4,6 +4,7 @@ import { createScene } from "./components/scene.js";
 import { createTorus } from "./components/torus.js";
 import { createLights } from "./components/lights.js";
 import { createMeshGroup } from "./components/meshGroup.js";
+import { loadBirds } from "./components/birds/birds.js";
 import { createRenderer } from "./systems/renderer.js";
 
 import { Train } from "./components/Train/Train.js";
@@ -46,6 +47,11 @@ class World {
     loop.updatables.push(train);
 
     scene.add(camera, cube, train, ...lights);
+  }
+
+  async init() {
+    const { parrot, flamingo, stork } = await loadBirds();
+    scene.add(parrot, flamingo, stork);
   }
 
   render() {
