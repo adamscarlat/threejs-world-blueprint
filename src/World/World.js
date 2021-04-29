@@ -6,6 +6,7 @@ import { createLights } from "./components/lights.js";
 import { createMeshGroup } from "./components/meshGroup.js";
 import { createRenderer } from "./systems/renderer.js";
 
+import { Train } from "./components/Train/Train.js";
 import { Resizer } from "./systems/Resizer.js";
 import { Loop } from "./systems/Loop.js";
 import { createControls } from "./systems/controls.js";
@@ -25,24 +26,26 @@ class World {
     renderer = createRenderer();
     loop = new Loop(camera, scene, renderer);
 
-    const cube = createCube();
-    loop.updatables.push(cube);
-
-    const torus = createTorus();
-
     this.resizer = new Resizer(container, camera, renderer);
-
     container.append(renderer.domElement);
-
-    const lights = createLights();
 
     const controls = createControls(camera, renderer.domElement);
     loop.updatables.push(controls);
 
-    const meshGroup = createMeshGroup();
-    loop.updatables.push(meshGroup);
+    const cube = createCube();
+    loop.updatables.push(cube);
 
-    scene.add(camera, cube, torus, meshGroup, ...lights);
+    //const torus = createTorus();
+
+    const lights = createLights();
+
+    // const meshGroup = createMeshGroup();
+    // loop.updatables.push(meshGroup);
+
+    const train = new Train();
+    loop.updatables.push(train);
+
+    scene.add(camera, cube, train, ...lights);
   }
 
   render() {
