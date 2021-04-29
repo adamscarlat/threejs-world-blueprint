@@ -17,13 +17,13 @@ async function loadBirds() {
   const stork = setupModel(storkData);
 
   parrot.scale.set(0.2, 0.2, 0.2);
-  parrot.position.set(15, 10, 0);
+  parrot.position.set(10, 10, 0);
 
   flamingo.scale.set(0.2, 0.2, 0.2);
-  flamingo.position.set(30, 10, 0);
+  flamingo.position.set(35, 10, 0);
 
   stork.scale.set(0.2, 0.2, 0.2);
-  stork.position.set(15, -10, 0);
+  stork.position.set(15, -15, 0);
 
   return {
     parrot,
